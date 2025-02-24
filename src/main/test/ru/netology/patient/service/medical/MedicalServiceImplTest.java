@@ -29,9 +29,7 @@ public class MedicalServiceImplTest {
                 .thenReturn(patientInfo);
 
         SendAlertService alert = Mockito.mock(SendAlertService.class);
-        doAnswer(i -> {
-            return null;
-        }).when(alert).send(message);
+        doAnswer(i -> null).when(alert).send(message);
 
         MedicalServiceImpl medicalService = new MedicalServiceImpl(repository, alert);
         medicalService.checkBloodPressure("2374b10e-fd4a-47a3-82f1-cc6aee558a62", new BloodPressure(160, 120));
@@ -50,9 +48,7 @@ public class MedicalServiceImplTest {
                 .thenReturn(patientInfo);
 
         SendAlertService alert = Mockito.mock(SendAlertService.class);
-        doAnswer(i -> {
-            return null;
-        }).when(alert).send(message);
+        doAnswer(i -> null).when(alert).send(message);
 
         MedicalServiceImpl medicalService = new MedicalServiceImpl(repository, alert);
         medicalService.checkTemperature("2374b10e-fd4a-47a3-82f1-cc6aee558a62", new BigDecimal("35.14"));
@@ -71,9 +67,7 @@ public class MedicalServiceImplTest {
                 .thenReturn(patientInfo);
 
         SendAlertService alert = Mockito.mock(SendAlertService.class);
-        doAnswer(i -> {
-            return null;
-        }).when(alert).send(message);
+        doAnswer(i -> null).when(alert).send(message);
 
         MedicalServiceImpl medicalService = new MedicalServiceImpl(repository, alert);
         medicalService.checkBloodPressure("2374b10e-fd4a-47a3-82f1-cc6aee558a62", new BloodPressure(120, 80));
@@ -89,16 +83,10 @@ public class MedicalServiceImplTest {
                 .thenReturn(null);
 
         SendAlertService alert = Mockito.mock(SendAlertService.class);
-        doAnswer(i -> {
-            return null;
-        }).when(alert).send(message);
+        doAnswer(i -> null).when(alert).send(message);
 
         MedicalServiceImpl medicalService = new MedicalServiceImpl(repository, alert);
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            medicalService.checkBloodPressure("2374b10e-fd4a-47a3-82f1-cc6aee558a62", new BloodPressure(160, 120));
-        });
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            medicalService.checkTemperature("2374b10e-fd4a-47a3-82f1-cc6aee558a62", new BigDecimal("36.65"));
-        });
+        Assertions.assertThrows(RuntimeException.class, () -> medicalService.checkBloodPressure("2374b10e-fd4a-47a3-82f1-cc6aee558a62", new BloodPressure(160, 120)));
+        Assertions.assertThrows(RuntimeException.class, () -> medicalService.checkTemperature("2374b10e-fd4a-47a3-82f1-cc6aee558a62", new BigDecimal("36.65")));
     }
 }
